@@ -1,0 +1,90 @@
+{
+  "projectType": "application",
+  "root": "apps/sketchy",
+  "sourceRoot": "apps/sketchy/src",
+  "prefix": "nx-bootstrap-bootswatch",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/sketchy",
+        "index": "apps/sketchy/src/index.html",
+        "main": "apps/sketchy/src/main.ts",
+        "polyfills": "apps/sketchy/src/polyfills.ts",
+        "tsConfig": "apps/sketchy/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/sketchy/src/favicon.ico", "apps/sketchy/src/assets"],
+        "styles": [
+          "dist/libs/shared/styles/sketchy.css",
+          "apps/sketchy/src/styles.scss"
+        ],
+        "scripts": [
+          "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+          "node_modules/jquery/dist/jquery.js",
+          "apps/sketchy/src/assets/custom.js"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/sketchy/src/environments/environment.ts",
+              "with": "apps/sketchy/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "sketchy:build:production"
+        },
+        "development": {
+          "browserTarget": "sketchy:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "sketchy:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/sketchy/src/**/*.ts",
+          "apps/sketchy/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

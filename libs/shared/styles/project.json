@@ -1,0 +1,26 @@
+{
+  "root": "libs/shared/styles",
+  "sourceRoot": "libs/shared/styles/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": ["{options.outputPath}"],
+      "configurations": {
+        "production": {
+          "style": "compressed",
+          "no-source-map": true
+        },
+        "development": {
+          "style": "expanded"
+        }
+      },
+      "defaultConfiguration": "production",
+      "options": {
+        "command": "sass libs/shared/styles/src:dist/libs/shared/styles",
+        "outputPath": "libs/shared/styles"
+      }
+    }
+  },
+  "tags": []
+}

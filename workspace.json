@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "projects": {
+    "flatly": "apps/flatly",
+    "shared-styles": "libs/shared/styles",
+    "sketchy": "apps/sketchy",
+    "vapor": "apps/vapor"
+  }
+}

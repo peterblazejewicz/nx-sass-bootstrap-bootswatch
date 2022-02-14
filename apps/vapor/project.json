@@ -1,0 +1,90 @@
+{
+  "projectType": "application",
+  "root": "apps/vapor",
+  "sourceRoot": "apps/vapor/src",
+  "prefix": "nx-bootstrap-bootswatch",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/vapor",
+        "index": "apps/vapor/src/index.html",
+        "main": "apps/vapor/src/main.ts",
+        "polyfills": "apps/vapor/src/polyfills.ts",
+        "tsConfig": "apps/vapor/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/vapor/src/favicon.ico", "apps/vapor/src/assets"],
+        "styles": [
+          "dist/libs/shared/styles/vapor.css",
+          "apps/vapor/src/styles.scss"
+        ],
+        "scripts": [
+          "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+          "node_modules/jquery/dist/jquery.js",
+          "apps/vapor/src/assets/custom.js"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/vapor/src/environments/environment.ts",
+              "with": "apps/vapor/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "vapor:build:production"
+        },
+        "development": {
+          "browserTarget": "vapor:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "vapor:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/vapor/src/**/*.ts",
+          "apps/vapor/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

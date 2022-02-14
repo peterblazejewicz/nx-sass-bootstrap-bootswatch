@@ -1,0 +1,90 @@
+{
+  "projectType": "application",
+  "root": "apps/flatly",
+  "sourceRoot": "apps/flatly/src",
+  "prefix": "nx-bootstrap-bootswatch",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/flatly",
+        "index": "apps/flatly/src/index.html",
+        "main": "apps/flatly/src/main.ts",
+        "polyfills": "apps/flatly/src/polyfills.ts",
+        "tsConfig": "apps/flatly/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/flatly/src/favicon.ico", "apps/flatly/src/assets"],
+        "styles": [
+          "dist/libs/shared/styles/flatly.css",
+          "apps/flatly/src/styles.scss"
+        ],
+        "scripts": [
+          "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+          "node_modules/jquery/dist/jquery.js",
+          "apps/flatly/src/assets/custom.js"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/flatly/src/environments/environment.ts",
+              "with": "apps/flatly/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "flatly:build:production"
+        },
+        "development": {
+          "browserTarget": "flatly:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "flatly:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/flatly/src/**/*.ts",
+          "apps/flatly/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
