@@ -87,5 +87,6 @@
       }
     }
   },
-  "tags": []
+  "tags": [],
+  "implicitDependencies": ["shared-styles"]
 }

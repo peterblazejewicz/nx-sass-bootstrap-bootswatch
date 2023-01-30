@@ -4,7 +4,7 @@
   "sourceRoot": "libs/shared/styles/src",
   "projectType": "library",
   "targets": {
-    "build": {
+    "build-scss": {
       "executor": "nx:run-commands",
       "outputs": ["{options.outputPath}"],
       "configurations": {
