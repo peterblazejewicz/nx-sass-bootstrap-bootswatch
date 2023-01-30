@@ -1,6 +1,7 @@
 {
+  "name": "vapor",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "root": "apps/vapor",
   "sourceRoot": "apps/vapor/src",
   "prefix": "nx-bootstrap-bootswatch",
   "targets": {

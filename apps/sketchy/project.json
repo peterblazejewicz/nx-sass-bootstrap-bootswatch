@@ -1,6 +1,7 @@
 {
+  "name": "sketchy",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "root": "apps/sketchy",
   "sourceRoot": "apps/sketchy/src",
   "prefix": "nx-bootstrap-bootswatch",
   "targets": {
